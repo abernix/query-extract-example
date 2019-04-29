@@ -1,0 +1,23 @@
+{
+  "name": "query-extract-example",
+  "private": "true",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev --respawn index.ts"
+  },
+  "keywords": [],
+  "author": "Jesse Rosenberger <me@jro.cc>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-graphql": "^0.2.0",
+    "apollo-language-server": "^1.7.0",
+    "vscode-uri": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "10.14.6",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "typescript": "^3.4.5"
+  }
+}
