@@ -6,14 +6,14 @@ import {
   ClientConfig
 } from "apollo-language-server";
 import {
-  printWithReducedWhitespace,
   sortAST,
-  hideStringAndNumericLiterals,
   dropUnusedDefinitions
 } from "apollo-graphql/lib/transforms";
+import { print } from "graphql";
 // @ts-ignore
 import config = require('./apollo.config.js');
 import URI from 'vscode-uri';
+import { createHash } from "crypto";
 
 class MockLoadingHandler implements LoadingHandler {
   constructor() {}
@@ -42,15 +42,13 @@ const project = new GraphQLClientProject({
 const manifest = Object.entries(
   project.mergedOperationsAndFragmentsForService
 ).map(([operationName, operationAST]) => {
-  const hash = printWithReducedWhitespace(
-    sortAST(
-      hideStringAndNumericLiterals(
-        dropUnusedDefinitions(operationAST, operationName)
-      )
+  const apqHash = createHash("sha256")
+    .update(
+      print(sortAST(dropUnusedDefinitions(operationAST, operationName)))
     )
-  );
+    .digest("hex");
 
-  return { operationName, hash };
+  return { operationName, operationAST, apqHash };
 });
 
 console.log(manifest);

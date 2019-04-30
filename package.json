@@ -13,9 +13,11 @@
   "dependencies": {
     "apollo-graphql": "^0.2.0",
     "apollo-language-server": "^1.7.0",
+    "graphql": "^14.2.1",
     "vscode-uri": "^1.0.6"
   },
   "devDependencies": {
+    "@types/graphql": "^14.2.0",
     "@types/node": "10.14.6",
     "ts-node-dev": "^1.0.0-pre.32",
     "typescript": "^3.4.5"
